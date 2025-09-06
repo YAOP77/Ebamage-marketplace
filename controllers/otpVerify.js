@@ -1,5 +1,7 @@
 const User = require("../models/User");
+const Boutique = require("../models/Boutiques");
 
+// User
 const otpVerify = async (req, res) => {
     try {
         const { email, codeOtp } = req.body;
@@ -41,4 +43,43 @@ const otpVerify = async (req, res) => {
     }
 }
 
-module.exports = otpVerify;
+// Boutique
+const verifyBoutiqueOtp = async (req, res) => {
+  try {
+    const { email, codeOtp } = req.body;
+
+    if (!email || !codeOtp) {
+      return res.status(400).json({ message: "Email et OTP requis" });
+    }
+
+    const boutique = await Boutique.findOne({ email });
+
+    if (!boutique) {
+      return res.status(404).json({ message: "Boutique non trouvée" });
+    }
+
+    if (boutique.isVerify) {
+      return res.status(400).json({ message: "Boutique déjà vérifiée" });
+    }
+
+    if (!boutique.otp || !boutique.otp.expiresAt || Date.now() > boutique.otp.expiresAt) {
+      return res.status(400).json({ message: "OTP expiré ou invalide" });
+    }
+
+    if (boutique.otp.code !== codeOtp) {
+      return res.status(400).json({ message: "OTP incorrect" });
+    }
+
+    // Validation réussie
+    boutique.isVerify = true;
+    boutique.otp = undefined; // Nettoyage complet
+    await boutique.save();
+
+    return res.status(200).json({ message: "Boutique vérifiée avec succès" });
+  } catch (error) {
+    console.error("Erreur vérification OTP boutique :", error);
+    return res.status(500).json({ error: error.message });
+  }
+};
+
+module.exports = { otpVerify, verifyBoutiqueOtp };
