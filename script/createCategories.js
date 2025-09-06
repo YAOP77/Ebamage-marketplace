@@ -22,16 +22,16 @@ const categories = [
 
     const existing = await Category.find();
     if (existing.length > 0) {
-      console.log("ℹ️ Catégories déjà initialisées.");
+      console.log("Catégories déjà initialisées.");
       return;
     }
 
     const inserts = categories.map(nom => ({ nom }));
     await Category.insertMany(inserts);
 
-    console.log("✅ Catégories insérées avec succès.");
+    console.log("Catégories insérées avec succès.");
   } catch (error) {
-    console.error("❌ Erreur d'initialisation :", error.message);
+    console.error("Erreur d'initialisation :", error.message);
   } finally {
     await mongoose.disconnect();
     process.exit();
