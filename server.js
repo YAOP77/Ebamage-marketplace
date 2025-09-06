@@ -2,8 +2,9 @@ require("dotenv").config();
 const dbConnect = require("./config/db");
 const express = require("express");
 const cors = require("cors");
-const userhRoute = require("./routes/user.routes");
-const boutiquehRoute = require("./routes/boutique.routes");
+const mainRoute = require("./routes/mainRoad.routes");
+const userhRoute = require("./routes/user/user.routes");
+const boutiquehRoute = require("./routes/boutique/boutique.routes");
 const deviceTokenRoute = require("./routes/deviceToken.routes");
 
 const app = express();
@@ -18,15 +19,13 @@ app.use(express.json());
 // app.use("/uploads", express.static("uploads"))
 
 // Route
+app.use("/api/user/", mainRoute);
 app.use("/api/auth", userhRoute);
 app.use("/api/auth/boutique", boutiquehRoute);
 app.use("/api/device-token", deviceTokenRoute);
 
-console.log("✅ Route /api/auth montée");
-
-
 // app.get("/", (req, res) => {
-//     res.send("Hello 👋 ...");
+//     res.send("Hello ...");
 // })
 
 app.listen(PORT, () => {

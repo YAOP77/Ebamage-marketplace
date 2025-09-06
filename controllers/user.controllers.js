@@ -1,5 +1,6 @@
 require("dotenv").config();
 const User = require("../models/User");
+const Article = require("../models/Article");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const sendOtpEmail = require("../helpers/brevo");
@@ -135,4 +136,19 @@ const LoginUser = async (req, res) => {
     }
 }
 
-module.exports = { RegisterUser, LoginUser, resendOtp };
+const getAllArticles = async (req, res) => {
+  try {
+    const articles = await Article.find().populate("idCategorie idBoutique");
+    res.status(200).json(articles);
+    console.log(articles);
+  } catch (error) {
+    res.status(500).json({ message: "Erreur lors de la lecture", error: error.message });
+  }
+};
+
+module.exports = { 
+    RegisterUser, 
+    LoginUser, 
+    resendOtp, 
+    getAllArticles
+};

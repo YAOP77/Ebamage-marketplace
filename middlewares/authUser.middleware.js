@@ -15,9 +15,3 @@ const isAuth = (req, res, next) => {
 }
 
 module.exports = isAuth;
-
-// http://localhost:5000/api/device-token/update-token
-
-// {
-//   "deviceToken": "abc123xyz456"
-// }

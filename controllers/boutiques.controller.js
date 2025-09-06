@@ -54,6 +54,7 @@ const createBoutique = async (req, res) => {
 const LoginBoutique = async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log("req.body reçu :", req.body);
 
     if (!email || !password) {
       return res.status(400).json({ message: "Les champs sont requis" });
