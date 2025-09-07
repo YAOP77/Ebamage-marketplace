@@ -1,0 +1,192 @@
+{
+  "info": {
+    "_postman_id": "ebamage-marketplace-full-api",
+    "name": "Ebamage Marketplace - Full API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "https://ebamage-marketplace.onrender.com" },
+    { "key": "auth_token", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Inscription utilisateur",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/user/", "host": [ "{{base_url}}" ], "path": [ "user", "" ] },
+            "body": { "mode": "raw", "raw": "{\n  \"nom\": \"Thomas\",\n  \"email\": \"thomas77@gmail.com\",\n  \"tel\": \"0902342777\",\n  \"password\": \"passworsstrong\",\n  \"type\": \"client\"\n}" }
+          }
+        },
+        {
+          "name": "Vérification OTP utilisateur",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/user/otp-verify", "host": [ "{{base_url}}" ], "path": [ "user", "otp-verify" ] },
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"thomas77@gmail.com\",\n  \"codeOtp\": \"123456\"\n}" }
+          }
+        },
+        {
+          "name": "Renvoi OTP utilisateur",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/user/resend-otp", "host": [ "{{base_url}}" ], "path": [ "user", "resend-otp" ] },
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"thomas77@gmail.com\"\n}" }
+          }
+        },
+        {
+          "name": "Connexion utilisateur",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/user/login", "host": [ "{{base_url}}" ], "path": [ "user", "login" ] },
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"thomas77@gmail.com\",\n  \"password\": \"passworsstrong\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Boutique",
+      "item": [
+        {
+          "name": "Inscription boutique",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/boutique/", "host": [ "{{base_url}}" ], "path": [ "boutique", "" ] },
+            "body": { "mode": "raw", "raw": "{\n  \"nom\": \"Boutique1\",\n  \"email\": \"boutique1@gmail.com\",\n  \"tel\": \"0900000000\",\n  \"password\": \"passworsstrong\",\n  \"type\": \"boutique\"\n}" }
+          }
+        },
+        {
+          "name": "Vérification OTP boutique",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/boutique/otp-verify", "host": [ "{{base_url}}" ], "path": [ "boutique", "otp-verify" ] },
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"boutique1@gmail.com\",\n  \"codeOtp\": \"123456\"\n}" }
+          }
+        },
+        {
+          "name": "Renvoi OTP boutique",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/boutique/resend-otp", "host": [ "{{base_url}}" ], "path": [ "boutique", "resend-otp" ] },
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"boutique1@gmail.com\"\n}" }
+          }
+        },
+        {
+          "name": "Connexion boutique",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/boutique/login", "host": [ "{{base_url}}" ], "path": [ "boutique", "login" ] },
+            "body": { "mode": "raw", "raw": "{\n  \"email\": \"boutique1@gmail.com\",\n  \"password\": \"passworsstrong\"\n}" }
+          }
+        },
+        {
+          "name": "Récupérer tous les articles de la boutique",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "Authorization", "value": "Bearer {{auth_token}}" } ],
+            "url": { "raw": "{{base_url}}/boutique/", "host": [ "{{base_url}}" ], "path": [ "boutique", "" ] }
+          }
+        },
+        {
+          "name": "Ajouter un article",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{auth_token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/boutique/upload", "host": [ "{{base_url}}" ], "path": [ "boutique", "upload" ] },
+            "body": { "mode": "raw", "raw": "{\n  \"nom\": \"Article Test\",\n  \"prix\": 1000,\n  \"description\": \"Description de l'article\"\n}" }
+          }
+        },
+        {
+          "name": "Modifier un article",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{auth_token}}" }
+            ],
+            "url": {
+              "raw": "{{base_url}}/boutique/article/update/:id",
+              "host": [ "{{base_url}}" ],
+              "path": [ "boutique", "article", "update", ":id" ]
+            },
+            "body": { "mode": "raw", "raw": "{\n  \"nom\": \"Article Modifié\",\n  \"prix\": 1200,\n  \"description\": \"Nouvelle description\"\n}" }
+          }
+        },
+        {
+          "name": "Supprimer un article",
+          "request": {
+            "method": "DELETE",
+            "header": [ { "key": "Authorization", "value": "Bearer {{auth_token}}" } ],
+            "url": {
+              "raw": "{{base_url}}/boutique/article/:id",
+              "host": [ "{{base_url}}" ],
+              "path": [ "boutique", "article", ":id" ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "MainRoad",
+      "item": [
+        {
+          "name": "Récupérer tous les articles",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "Authorization", "value": "Bearer {{auth_token}}" } ],
+            "url": { "raw": "{{base_url}}/", "host": [ "{{base_url}}" ], "path": [ "" ] }
+          }
+        },
+        {
+          "name": "Récupérer les catégories",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "Authorization", "value": "Bearer {{auth_token}}" } ],
+            "url": { "raw": "{{base_url}}/categories", "host": [ "{{base_url}}" ], "path": [ "categories" ] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "DeviceToken",
+      "item": [
+        {
+          "name": "Mettre à jour le device token",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{auth_token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/update-token", "host": [ "{{base_url}}" ], "path": [ "update-token" ] },
+            "body": { "mode": "raw", "raw": "{\n  \"deviceToken\": \"abc123\"\n}" }
+          }
+        },
+        {
+          "name": "Supprimer le device token",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Authorization", "value": "Bearer {{auth_token}}" }
+            ],
+            "url": { "raw": "{{base_url}}/clear-token", "host": [ "{{base_url}}" ], "path": [ "clear-token" ] }
+          }
+        }
+      ]
+    }
+  ]
+}

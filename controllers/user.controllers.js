@@ -11,8 +11,8 @@ const generateOtp = () => Math.floor(100000 + Math.random() * 900000).toString()
 // Inscription d'un utilisateur
 const RegisterUser = async (req, res) => {
     try {
-        const { nom, email, tel, password, deviceToken, type } = req.body;
-        // console.log("Reçu dans req.body :", req.body);
+        const { nom, email, tel, password, deviceToken } = req.body;
+        console.log("Reçu dans req.body :", req.body);
 
         if(!nom || !email || !tel || !password ) {
             return res.status(400).json({ message: "Tous les champs sont requis" });
