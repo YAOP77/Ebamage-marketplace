@@ -13,7 +13,7 @@ router.post("/otp-verify", verifyBoutiqueOtp);
 router.post("/resend-otp", resendBoutiqueOtp);
 router.post("/login", LoginBoutique);
 
-router.get("/", isAuth, isBoutique, allShopItems);
+router.get("/my-articles", isAuth, isBoutique, allShopItems);
 router.post("/upload", isAuth, isBoutique, middArticle, uploadItems);
 router.put("/article/update/:id", isAuth, isBoutique, middArticle, updateItems);
 router.delete("/article/:id", isAuth, isBoutique, deleteItems);
