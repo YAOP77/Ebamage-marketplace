@@ -2,7 +2,8 @@ const Category = require("../models/Categories");
 
 const getCategories = async (req, res) => {
   try {
-    const categories = await Category.find({}, "nom"); // ← récupère tous les noms
+    // récupère tous les noms
+    const categories = await Category.find({}, "nom"); 
     if (categories.length === 0) {
       return res.status(404).json({ message: "Aucune catégorie trouvée" });
     }

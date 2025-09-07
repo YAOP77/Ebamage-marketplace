@@ -131,19 +131,19 @@ const LoginUser = async (req, res) => {
     }
 }
 
-const getAllArticles = async (req, res) => {
-  try {
-    const articles = await Article.find().populate("idCategorie idBoutique");
-    res.status(200).json(articles);
-    console.log(articles);
-  } catch (error) {
-    res.status(500).json({ message: "Erreur lors de la lecture", error: error.message });
-  }
-};
+// const getAllArticles = async (req, res) => {
+//   try {
+//     const articles = await Article.find().populate("idCategorie idBoutique");
+//     res.status(200).json(articles);
+//     console.log(articles);
+//   } catch (error) {
+//     res.status(500).json({ message: "Erreur lors de la lecture", error: error.message });
+//   }
+// };
 
 module.exports = { 
     RegisterUser, 
     LoginUser, 
     resendOtp, 
-    getAllArticles
+    // getAllArticles
 };
