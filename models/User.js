@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const UserSchema = new mongoose.Schema({
     nom: { type: String, required: true },
     email: { type: String, required: true },
-    tel: { type: Number, required: true },
+    tel: { type: String, required: true },
     password: { type: String, required: true },
     isVerify: { type: Boolean, default: false },
     codeOtp: { type: String, default: null },
