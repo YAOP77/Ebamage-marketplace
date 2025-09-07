@@ -16,6 +16,6 @@ router.post("/login", LoginBoutique);
 router.get("/my-articles", isAuth, isBoutique, allShopItems);
 router.post("/upload", isAuth, isBoutique, middArticle, uploadItems);
 router.put("/article/update/:id", isAuth, isBoutique, middArticle, updateItems);
-router.delete("/article/:id", isAuth, isBoutique, deleteItems);
+router.delete("/article/delete/:id", isAuth, isBoutique, deleteItems);
 
 module.exports = router;
