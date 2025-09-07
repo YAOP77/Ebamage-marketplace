@@ -4,7 +4,7 @@ const express = require("express");
 const cors = require("cors");
 const mainRoute = require("./routes/mainRoad.routes");
 const userhRoute = require("./routes/user/user.routes");
-const boutiquehRoute = require("./routes/boutique/boutique.routes");
+const boutiqueRoute = require("./routes/boutique/boutique.routes");
 const deviceTokenRoute = require("./routes/deviceToken.routes");
 
 const app = express();
@@ -21,7 +21,7 @@ app.use(express.json());
 // Route
 app.use("/api/user/", mainRoute);
 app.use("/api/auth", userhRoute);
-app.use("/api/auth/boutique", boutiquehRoute);
+app.use("/api/auth/boutique", boutiqueRoute);
 app.use("/api/device-token", deviceTokenRoute);
 
 // app.get("/", (req, res) => {
