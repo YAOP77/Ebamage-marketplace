@@ -36,7 +36,6 @@ const RegisterUser = async (req, res) => {
             deviceToken: deviceToken || null,
             otpExpiresAt: new Date(Date.now() + 5 * 60 * 1000), // expire dans 5 min
             role: "user",
-            type: userType,
             // codeOtp: otpCode
             ...(process.env.NODE_ENV !== "production" && { codeOtp: otpCode } )
         }

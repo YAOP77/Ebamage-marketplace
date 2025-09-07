@@ -1,0 +1,41 @@
+{
+  "baseUrl": "https://ebamage-marketplace.onrender.com",
+  "endpoints": [
+    {
+      "group": "user",
+      "endpoints": [
+        { "method": "POST", "path": "/user/", "description": "Inscription utilisateur" },
+        { "method": "POST", "path": "/user/otp-verify", "description": "Vérification OTP utilisateur" },
+        { "method": "POST", "path": "/user/resend-otp", "description": "Renvoi OTP utilisateur" },
+        { "method": "POST", "path": "/user/login", "description": "Connexion utilisateur" }
+      ]
+    },
+    {
+      "group": "boutique",
+      "endpoints": [
+        { "method": "POST", "path": "/boutique/", "description": "Inscription boutique" },
+        { "method": "POST", "path": "/boutique/otp-verify", "description": "Vérification OTP boutique" },
+        { "method": "POST", "path": "/boutique/resend-otp", "description": "Renvoi OTP boutique" },
+        { "method": "POST", "path": "/boutique/login", "description": "Connexion boutique" },
+        { "method": "GET", "path": "/boutique/", "description": "Récupérer tous les articles de la boutique (authentification requise)" },
+        { "method": "POST", "path": "/boutique/upload", "description": "Ajouter un article (authentification requise)" },
+        { "method": "PUT", "path": "/boutique/article/update/:id", "description": "Modifier un article (authentification requise)" },
+        { "method": "DELETE", "path": "/boutique/article/:id", "description": "Supprimer un article (authentification requise)" }
+      ]
+    },
+    {
+      "group": "mainRoad",
+      "endpoints": [
+        { "method": "GET", "path": "/", "description": "Récupérer tous les articles (authentification requise)" },
+        { "method": "GET", "path": "/categories", "description": "Récupérer les catégories (authentification requise)" }
+      ]
+    },
+    {
+      "group": "deviceToken",
+      "endpoints": [
+        { "method": "POST", "path": "/update-token", "description": "Mettre à jour le device token (authentification requise)" },
+        { "method": "POST", "path": "/clear-token", "description": "Supprimer le device token (authentification requise)" }
+      ]
+    }
+  ]
+}
