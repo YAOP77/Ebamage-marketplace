@@ -24,9 +24,6 @@ const RegisterUser = async (req, res) => {
         const passwordHash = await bcrypt.hash(password, 10);
         const otpCode = generateOtp();
 
-        const allowedTypes = ["client", "boutique"];
-        const userType = allowedTypes.includes(type) ? type : "client";
-
         const userData = {
             nom,
             email,
@@ -125,7 +122,6 @@ const LoginUser = async (req, res) => {
             user: {
                 id: user.id,
                 role: user.role,
-                type : user.type
             }
         });
 
